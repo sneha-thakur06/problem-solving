@@ -1,0 +1,24 @@
+//Check whether the given strings are anagram are not
+
+
+import java.util.*;
+
+public class AnagramCheck {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the string: ");
+        String s = sc.next();
+        String str = sc.next();
+        boolean check = true;
+        char[] arr1=s.toCharArray();
+        char[] arr2=str.toCharArray();
+        Arrays.sort(arr1);
+        Arrays.sort(arr2);
+        if(Arrays.equals(arr1,arr2)){
+            System.out.println("Anagram");
+        }
+        else{
+            System.out.println("Not Anagram");
+        }
+    }
+}
