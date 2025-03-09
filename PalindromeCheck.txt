@@ -1,0 +1,29 @@
+import java.util.*;
+public class PalindromeCheck {
+    public static String checkPalindromenumber(int n){
+        int sum=0;
+        int num=n;
+        if(Integer.toString(n).length()==1){
+            return Integer.toString(n);
+        }
+
+
+            while(n!=0){
+                int rem=n%10;
+                sum=sum*10+rem;
+                n=n/10;
+            }
+            if(sum == num ){
+                return " palindrome";
+            }
+            return "Not Palindrome";
+
+
+    }
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter the value of number to be checked: ");
+        int n=sc.nextInt();
+        System.out.println(checkPalindromenumber(n));
+    }
+}
