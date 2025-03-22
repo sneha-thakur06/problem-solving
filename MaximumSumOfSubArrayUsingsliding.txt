@@ -1,0 +1,39 @@
+import java.util.*;
+
+public class SlidnignWindowUsingTwoPointer {
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter the size of the array: ");
+        int n=sc.nextInt();
+        int[] arr=new int[n];
+        System.out.println("Enter the element for the array: ");
+        for(int i=0;i<n;i++){
+            arr[i]=sc.nextInt();
+        }
+        System.out.println("Enter the window size: ");
+        int k=sc.nextInt();
+        int start=0;
+        int end=0;
+        int sum=0;
+        int maxsum=Integer.MIN_VALUE;   // To handle negative values
+        while(end<n){
+            sum+=arr[end]; // Add the current element to the window
+            if(end-start+1<k){
+            // If the window size is not yet 'k', expand the window
+                end++;
+            }
+            else if(end-start+1 == k){
+           // When the window size is exactly 'k'
+                maxsum=Math.max(maxsum,sum);
+           // Slide the window: remove the element at start and move start forward
+                sum-=arr[start];
+                start++;
+                end++;
+            }
+
+
+        }
+        System.out.println(maxsum);
+
+    }
+}
