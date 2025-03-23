@@ -1,0 +1,35 @@
+import java.util.*;
+public class MaximumOfAllSubarray {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the size of the array: ");
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+        System.out.println("Enter the element for the array: ");
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+        System.out.println("Enter the window size: ");
+        int k = sc.nextInt();
+        List<Integer> li=new ArrayList<>();
+        int start=0;
+        int end=0;
+        int maximum=0;
+        while(end<n){
+            maximum=Math.max(maximum,arr[end]);
+            if(end-start+1 < k){
+                end++;
+            }
+
+            if(end-start+1 == k){
+                li.add(maximum);
+                start++;
+                end++;
+            }
+
+        }
+            System.out.println(li);
+
+
+    }
+}
