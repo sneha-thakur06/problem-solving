@@ -1,0 +1,44 @@
+import java.util.*;
+public class SubStringOfKDistinctCharacter {
+
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        HashMap<Character,Integer> hmp =new HashMap<>();
+
+        System.out.println("Enter the string: ");
+        String s=sc.nextLine();
+
+
+        // Input: Window size
+        System.out.println("Enter the k distinct value: ");
+        int k = sc.nextInt();
+
+        char[] c=s.toCharArray();
+        int i=0,j=0,maxi=Integer.MIN_VALUE;
+
+        while(j<s.length()){
+            hmp.put(c[j], hmp.getOrDefault(c[j],0)+1);
+
+            if(hmp.size() < k){
+                j++;
+            }
+            else if(hmp.size() == k){
+                maxi=Math.max(maxi,j-i+1);
+                j++;
+            }
+            if(hmp.size() > k){
+                while(hmp.size() > k){
+                    hmp.put(c[i],hmp.getOrDefault(c[i],0)-1);
+                    if(hmp.get(c[i])==0) {
+                        hmp.remove(c[i]);
+
+                    }
+                    i++;
+
+                }
+                j++;
+            }
+        }
+        System.out.println(maxi);
+    }
+}
