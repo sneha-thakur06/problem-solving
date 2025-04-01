@@ -1,0 +1,45 @@
+import java.util.*;
+
+public class Sumpair {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // Input: Array size
+        System.out.println("Enter the size of the array: ");
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+
+        // Input: Array elements
+        System.out.println("Enter the elements of the array: ");
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+
+        // Sum
+        System.out.println("Enter sum value: ");
+        int k = sc.nextInt();
+        Arrays.sort(arr);
+        ArrayList<Integer> li=new ArrayList<>();
+
+        int start=0;
+        int end=n-1;
+
+        while(start<end) {
+
+        int sum=arr[start]+arr[end];
+        if(sum==k){
+            li.add(arr[start]);
+            li.add(arr[end]);
+            start++;
+            end--;
+        }
+        else if(sum<k){
+            start++;
+        }
+        else{
+            end--;
+        }
+        }
+        System.out.println(li);
+    }
+}
