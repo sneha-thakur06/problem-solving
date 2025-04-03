@@ -1,0 +1,28 @@
+import java.util.*;
+public class RemoveDuplicate {
+
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter the size of the array: ");
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+        ArrayList<Integer> li=new ArrayList<>();
+
+        System.out.println("Enter the elements of 1st array: ");
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+
+        int s=0;
+        for(int i=0;i<n;i++){
+            if(li.contains(arr[s])){
+                s++;
+            }
+            else{
+                li.add(arr[s]);
+                s++;
+            }
+        }
+        System.out.println(li);
+    }
+}
