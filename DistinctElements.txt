@@ -1,0 +1,24 @@
+import java.util.*;
+public class DistinctElement {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        List<Integer> li=new ArrayList<>();
+        HashMap<Integer,Integer> hmp=new HashMap<>();
+        System.out.println("Enter the size of an array: ");
+        int size=sc.nextInt();
+        int[] arr=new int[size];
+        System.out.println("Enter the elements for the array: ");
+        for(int i=0;i<arr.length;i++){
+            arr[i]=sc.nextInt();
+        }
+        for(int j:arr){
+            hmp.put(j,hmp.getOrDefault(j,0)+1);
+        }
+        for(Map.Entry<Integer,Integer> entry : hmp.entrySet()){
+            if(entry.getValue()==1){
+                li.add(entry.getKey());
+            }
+        }
+        System.out.println(li);
+    }
+}
