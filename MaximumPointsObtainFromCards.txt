@@ -1,0 +1,35 @@
+import java.util.*;
+public class MaxPointsObtainedfromCards {
+    public int pointsObtained(int[] arr, int k){
+
+        int leftsum=0;
+        int rightsum=0;
+        int maxpoint=0;
+        for(int i=0;i<=k-1;i++){
+            leftsum+=arr[i];
+        }
+        maxpoint=leftsum;
+        int r_index=arr.length-1;
+        for(int j=k-1;j>=0;j--){
+            leftsum=leftsum-arr[j];
+            rightsum=rightsum+arr[r_index];
+            maxpoint=Math.max(maxpoint,leftsum+rightsum);
+            r_index--;
+        }
+        return maxpoint;
+    }
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter the k value: ");
+        int k=sc.nextInt();
+        System.out.println("Enter the size of array: ");
+        int n=sc.nextInt();
+        int[] arr=new int[n];
+        System.out.println("Enter the elements for the array: ");
+        for(int i=0;i<arr.length;i++){
+            arr[i]=sc.nextInt();
+        }
+        MaxPointsObtainedfromCards mp= new MaxPointsObtainedfromCards();
+        System.out.println(mp.pointsObtained(arr,k));
+    }
+}
