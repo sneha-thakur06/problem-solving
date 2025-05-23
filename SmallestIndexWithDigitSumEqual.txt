@@ -1,0 +1,33 @@
+//Smallest Index With Digit Sum Equal to Index
+----------------------------------------------
+
+class Solution {
+    public int smallestIndex(int[] nums) {
+       
+        int result=-1;
+        int i=0;
+        while(i<nums.length){
+            int num=nums[i];
+            int sum=0;
+            if(nums[i]<10 && nums[i]==i){
+                result=i;
+                break;
+            }
+            else if(num>=10){
+                 while(num>0){
+                int rev=num%10;
+                sum+=rev;
+                num=num/10;
+            }
+            if(sum==i){
+                result=i;
+                break;
+            }
+            }
+            i++;
+        }
+        return result;
+    }
+}
+
+
