@@ -1,0 +1,59 @@
+class NodeSwap{
+    int data;
+    NodeSwap next;
+    NodeSwap(int data){
+        this.data=data;
+        this.next=null;
+    }
+    NodeSwap(int data,NodeSwap next){
+        this.data=data;
+        this.next=null;
+    }
+}
+public class SwapNodeData {
+    public static NodeSwap arrayToList(int[] arr){
+        NodeSwap head= new NodeSwap(arr[0]);
+        NodeSwap tem=head;
+        for(int i=1;i<arr.length;i++) {
+            NodeSwap num = new NodeSwap(arr[i]);
+            tem.next = num;
+            tem = num;
+        }
+        return head;
+    }
+
+    public static NodeSwap swapElement(NodeSwap head,int num1,int num2){
+        NodeSwap tem=head;
+        NodeSwap n1=null;
+        NodeSwap n2=null;
+        while(tem!=null){
+            if(tem.data==num1){
+                n1=tem;
+            }
+            else if(tem.data==num2){
+                n2=tem;
+            }
+            tem=tem.next;
+        }
+        if(n1!=null && n2!=null){
+            int temu=n1.data;
+            n1.data=n2.data;
+            n2.data=temu;
+        }
+        return head;
+    }
+    public static void print(NodeSwap head){
+        NodeSwap tempu=head;
+        while(tempu!=null){
+            System.out.print(tempu.data+" ");
+            tempu=tempu.next;
+        }
+
+    }
+    public static void main(String[] args) {
+        int[] arr={1,2,3,4,5,6};
+        NodeSwap head=arrayToList(arr);
+        head=swapElement(head, 5, 3);
+        print(head);
+    }
+}
