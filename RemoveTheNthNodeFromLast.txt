@@ -1,0 +1,80 @@
+class NodeSwap{
+    int data;
+    NodeSwap next;
+    NodeSwap(int data){
+        this.data=data;
+        this.next=null;
+    }
+    NodeSwap(int data,NodeSwap next){
+        this.data=data;
+        this.next=null;
+    }
+}
+public class SwapNodeData {
+    public static NodeSwap arrayToList(int[] arr){
+        NodeSwap head= new NodeSwap(arr[0]);
+        NodeSwap tail=new NodeSwap(arr[0]);
+        NodeSwap tem=head;
+//        NodeSwap tail=head;
+        for(int i=1;i<arr.length;i++) {
+            NodeSwap num = new NodeSwap(arr[i]);
+            tem.next = num;
+            tem = num;
+        }
+        tail=tem;
+        return head;
+    }
+
+        public static NodeSwap printNthNodeFromLast(NodeSwap head,int n){
+        NodeSwap fast=head;
+        NodeSwap last=head;
+        int i=1;
+        while(fast!=null ){
+            if(i<=n){
+                fast=fast.next;
+            }
+            else{
+                fast=fast.next;
+                last=last.next;
+            }
+            i++;
+        }
+            return last;
+        }
+
+        public static NodeSwap removeNthNodeFromLast(NodeSwap head,int n){
+        NodeSwap dummy=new NodeSwap(-1);
+        dummy.next=head;
+        NodeSwap fast=dummy;
+        NodeSwap slow=dummy;
+        for(int i=0;i<=n;i++){
+            fast=fast.next;
+        }
+        while(fast!=null){
+            fast=fast.next;
+            slow=slow.next;
+        }
+        slow.next=slow.next.next;
+        return dummy.next;
+        }
+    public static void print(NodeSwap head){
+        NodeSwap tempu=head;
+        while(tempu!=null){
+            System.out.print(tempu.data+" ");
+            tempu=tempu.next;
+        }
+
+    }
+    public static void main(String[] args) {
+        int[] arr={1,2,3,4,5,6};
+        NodeSwap head=arrayToList(arr);
+//        head=swapElement(head, 5, 3);
+
+//        head=printNthNodeFromLast(head,4);
+//        System.out.println(middleElement(head,tail));
+//        print(head);
+//        System.out.println(head.data);
+        head=removeNthNodeFromLast(head,4);
+        print(head);
+    }
+}
