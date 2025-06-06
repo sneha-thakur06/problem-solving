@@ -1,0 +1,65 @@
+class DoubleNode{
+    int data;
+    DoubleNode next;
+    DoubleNode prev;
+    DoubleNode(int data){
+        this.data=data;
+        this.next=null;
+        this.prev=null;
+    }
+    DoubleNode(int data,DoubleNode next,DoubleNode prev){
+        this.data=data;
+        this.next=next;
+        this.prev=prev;
+    }
+}
+
+public class DoublyLinkedList {
+    public static DoubleNode arrayToDoubly(int[] arr){
+        DoubleNode head=new DoubleNode(arr[0]);
+        DoubleNode previous=head;
+        for(int i=1;i<arr.length;i++){
+//            DoubleNode temp=new DoubleNode(arr[i],null,previous);
+            DoubleNode temp=new DoubleNode(arr[i]);
+            previous.next=temp;
+            temp.prev=previous;
+            previous=temp;
+        }
+        return head;
+    }
+
+public static DoubleNode reverse(DoubleNode head){
+        DoubleNode current=head;
+        DoubleNode back=null;
+        while(current!=null){
+            DoubleNode front=current.next;
+            current.next=back;
+            current.prev=front;
+            back=current;
+            current=front;
+        }
+        return back;
+
+    }
+
+
+public static void print(DoubleNode head){
+        DoubleNode tempu=head;
+        while(tempu!=null){
+            System.out.print(tempu.data+"-> ");
+            tempu=tempu.next;
+        }
+
+    }
+
+
+  public static void main(String[] args) {
+        int[] arr={2,3,4,5,8};
+   DoubleNode head=arrayToDoubly(arr);
+    head=arrayToDoubly(arr);       
+        head=reverse(head);
+    print(head);
+
+
+    }
+}
