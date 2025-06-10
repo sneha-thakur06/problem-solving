@@ -1,0 +1,53 @@
+import java.util.*;
+class LoopNode{
+    int data;
+    LoopNode next;
+    LoopNode(int data){
+        this.data=data;
+        this.next=null;
+    }
+
+}
+public class DetectALoop {
+    public static LoopNode arrToLinked(int[] arr){
+        LoopNode head=new LoopNode(arr[0]);
+        LoopNode temp=head;
+        for(int i=1;i<arr.length;i++){
+            LoopNode num=new LoopNode(arr[i]);
+            temp.next=num;
+            temp=num;
+        }
+        return head;
+    }
+//    public static boolean detectLoopNode(LoopNode head){
+//        HashMap<LoopNode,Integer> hmp=new HashMap<>();
+//        LoopNode temp=head;
+//        while(temp!=null){
+//            if(hmp.containsKey(temp)){
+//                return true;
+//            }
+//            hmp.put(temp,hmp.getOrDefault(temp,0)+1);
+//            temp=temp.next;
+//        }
+//        return false;
+//    }
+    public static boolean detectLoopNode(LoopNode head){
+        LoopNode slow=head;
+        LoopNode fast=head;
+        while(fast!=null && fast.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+            if(slow==fast){
+                return true;
+            }
+        }
+        return false;
+    }
+    public static void main(String[] args) {
+        int[] arr={1,2,3,4,5};
+        LoopNode head=arrToLinked(arr);
+        head.next.next.next.next = head.next.next.next;
+        boolean s=detectLoopNode(head);
+        System.out.println(s);
+    }
+}
