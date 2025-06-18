@@ -1,0 +1,74 @@
+class NodeQueue
+{
+    int data;
+    NodeQueue next;
+
+    public NodeQueue(int data){
+        this.data=data;
+        this.next=null;
+    }
+
+
+}
+public class ImplemetationOfQueueUisngLinkedListExample {
+    static NodeQueue  start,end;
+    static int size=0;
+    public static void push(int val){
+
+        NodeQueue temp=new NodeQueue(val);
+        if(start==null){
+            start=temp;
+            end=temp;
+        }
+
+        end.next=temp;
+        end=temp;
+
+        size++;
+
+    }
+
+    public static void pop(){
+        if(start==null)
+        {
+            System.out.println("Queue is empty.........");
+        }
+        assert start != null;
+        start=start.next;
+        size--;
+    }
+    public static int top(){
+        return start.data;
+    }
+
+    public static int lengthQueue(){
+        return size;
+    }
+    public static void print(){
+        NodeQueue sp=start;
+        while (sp!=null){
+            System.out.print(" "+sp.data);
+            sp=sp.next;
+        }
+        System.out.println();
+    }
+    public static void main(String[] args) {
+        ImplemetationOfQueueUisngLinkedListExample obj= new ImplemetationOfQueueUisngLinkedListExample();
+        push(2);
+        push(12);
+        push(78);
+        print();
+        push(12);
+        push(10);
+        print();
+        pop();
+        pop();
+        print();
+        int t=top();
+        System.out.println("Top of the stack is: "+ t);
+        int l=lengthQueue();
+        System.out.println("Length of the queue is: "+l);
+
+
+    }
+}
