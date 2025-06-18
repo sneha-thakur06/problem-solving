@@ -1,0 +1,54 @@
+class NodeStack{
+
+    int data;
+    NodeStack next;
+
+    public NodeStack(int data){
+        this.data=data;
+        this.next=null;
+    }
+}
+public class StackImplementationUsingLinkedList {
+   static NodeStack top=null;
+   static int size=0;
+
+        public static void push(int x){
+            NodeStack temp=new NodeStack(x);
+            temp.next=top;
+            top=temp;
+            size++;
+        }
+        public static void pop(){
+            top=top.next;
+            size--;
+        }
+        public static int lengthOfStack(){
+            return size;
+        }
+        public static int topOfTheStack(){
+            return top.data;
+        }
+        public static void print(){
+            NodeStack stnode=top;
+            while(stnode!=null){
+                System.out.print(" "+stnode.data);
+                stnode=stnode.next;
+            }
+            System.out.println();
+        }
+        public static void main (String[] args){
+            StackImplementationUsingLinkedList stk=new StackImplementationUsingLinkedList();
+            push(12);
+            push(34);
+            push(78);
+            print();
+            pop();
+            print();
+            push(45);
+            print();
+            int l=lengthOfStack();
+            System.out.println("Length is: "+l);
+            int t=topOfTheStack();
+            System.out.println("Top of the stack is: "+t);
+        }
+}
