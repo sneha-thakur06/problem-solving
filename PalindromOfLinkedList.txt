@@ -1,0 +1,78 @@
+import java.util.*;
+class NodeNob{
+    int data;
+    NodeNob next;
+
+    NodeNob(int data){
+        this.data=data;
+        this.next=null;
+    }
+}
+public class ImplemetationExampleOfCheckingPalindrome {
+
+   static NodeNob head=null;
+    public void convertArrayToLinkedlist(int[] arr){
+        head=new NodeNob(arr[0]);
+        NodeNob temp=head;
+        for(int i=1;i<arr.length;i++){
+            NodeNob currNode=new NodeNob(arr[i]);
+            temp.next=currNode;
+            temp=currNode;
+        }
+
+    }
+
+  public  void print(NodeNob temp){
+        if(temp!=null){
+            System.out.print(temp.data+" ");
+            print(temp.next);
+        }
+
+  }
+
+
+  public boolean checkPalindrome(NodeNob temp){
+            Stack<Integer> stk=new Stack<>();
+        if(temp==null || temp.next==null){
+                return true;
+            }
+            NodeNob fast=temp;
+            NodeNob slow=temp;
+            while(fast!=null && fast.next!=null){
+                fast=fast.next.next;
+                stk.push(slow.data);
+                slow=slow.next;
+            }
+            if(fast!=null){
+                slow=slow.next;
+            }
+            while(slow!=null){
+                if(stk.isEmpty() || stk.pop()!=slow.data){
+                    return false;
+                }
+                slow=slow.next;
+            }
+            return true;
+  }
+
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter the size of the array: ");
+        int n=sc.nextInt();
+
+        System.out.println("Enter the elements for the array: ");
+        int[] arr= new int[n];
+        for(int i=0;i<arr.length;i++){
+            arr[i]=sc.nextInt();
+        }
+        ImplemetationExampleOfCheckingPalindrome obj=new ImplemetationExampleOfCheckingPalindrome();
+       obj.convertArrayToLinkedlist(arr);
+       obj.print(head);
+        System.out.println(" ");
+
+       boolean result=obj.checkPalindrome(head);
+        System.out.println(result);
+
+
+    }
+}
