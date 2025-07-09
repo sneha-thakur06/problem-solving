@@ -1,0 +1,35 @@
+import java.util.*;
+public class MoveZerosUsingTwoPointer {
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter the size of the array: ");
+        int size=sc.nextInt();
+
+        System.out.println("Enter the elements for the array: ");
+        int[] arr=new int[size];
+        for(int i=0;i<arr.length;i++){
+            arr[i]=sc.nextInt();
+        }
+        int fast=0;
+        int last=arr.length-1;
+        while(fast<last){
+            if(arr[fast]==0 && arr[last]!=0){
+                int temp=arr[fast];
+                arr[fast]=arr[last];
+                arr[last]=temp;
+                fast++;
+                last--;
+            }
+            if(arr[last]==0){
+                last--;
+            }
+            if(arr[fast]!=0){
+                fast++;
+            }
+        }
+        System.out.println("After modifying: ");
+        for(int num:arr){
+            System.out.print(num+" ");
+        }
+    }
+}
