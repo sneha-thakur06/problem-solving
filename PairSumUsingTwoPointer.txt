@@ -1,0 +1,46 @@
+import java.util.*;
+public class PairSum {
+
+    public boolean pairSumExample(int[] arr,int target){
+        if(arr.length==1){
+                return false;
+        }
+
+        int slow=0;
+        int fast=arr.length-1;
+        int count=0;
+        while(slow<fast){
+            int sum=0;
+            sum=arr[fast]+arr[slow];
+            if(sum>target){
+                fast--;
+            }
+            else if(sum<target){
+                slow++;
+            }
+            else {
+                if(arr[slow]+arr[fast]==target){
+                    return true;
+                }
+            }
+        }
+        return true;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter the size of the array: ");
+        int size=sc.nextInt();
+
+        System.out.println("Enter the elements for the array: ");
+        int[] arr=new int[size];
+        for(int i=0;i<size;i++){
+            arr[i]=sc.nextInt();
+        }
+        System.out.println("Enter the target elements: ");
+        int target=sc.nextInt();
+        PairSum obj=new PairSum();
+        boolean result=obj.pairSumExample(arr,target);
+        System.out.println(result);
+    }
+}

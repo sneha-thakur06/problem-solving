@@ -1,0 +1,136 @@
+------------=============------------
+BRUTFORCE APPROACH
+Time complexity O(N3)
+space complexity O(N+NlogN)
+------------==============--------------
+
+
+class Solution {
+    public List<List<Integer>> threeSum(int[] nums) {
+
+        Set< List<Integer>> set=new HashSet<>();
+        for(int i=0;i<nums.length;i++){
+           
+            for(int j=i+1;j<nums.length;j++){
+              
+                for(int k=j+1;k<nums.length;k++){
+                    if(nums[i]+nums[j]+nums[k]==0){
+                         List<Integer> li = Arrays.asList(nums[i], nums[j], nums[k]);
+                         Collections.sort(li);
+                        set.add(li);
+                    }
+                    
+                }
+            }
+            
+        }
+        List<List<Integer>> li=new ArrayList<>(set);
+         return li;
+    }
+   
+}
+
+---------=====================------------
+
+WITH TIMECOMPLEXITY O(N2*LOGN)
+SPACE COMPLEXITY O(N* LogN)
+----------------------------------
+
+import com.sun.jdi.IntegerType;
+
+import java.util.*;
+
+
+public class ThreeSumOptimalOne {
+    public static List<List<Integer>> threeSum(int[] arr){
+        Set<List<Integer>> set=new HashSet<>();
+        for(int i=0; i<arr.length;i++){
+            Set < Integer> s=new HashSet<>();
+            for(int j=i+1;j<arr.length;j++){
+
+                int nextnum = -(arr[i] + arr[j]);
+                if(!s.contains(nextnum)){
+                    s.add(arr[j]);
+                }
+                else{
+                    List<Integer> li=Arrays.asList(arr[i],arr[j],nextnum);
+                    Collections.sort(li);
+                    set.add(li);
+                }
+
+            }
+        }
+        return new ArrayList<>(set);
+    }
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter the size of the array: ");
+        int size=sc.nextInt();
+        int[] arr=new int[size];
+        System.out.println("Enter the elements for the array: ");
+        for(int i=0;i<arr.length;i++){
+            arr[i]=sc.nextInt();
+        }
+        System.out.println(threeSum(arr));
+
+    }
+}
+
+
+
+
+----------------=====================---------------
+     USING TWO POINTER METHOD
+-------------==================----------------------
+
+import java.util.*;
+public class ThreeSumUsingTwoPointer {
+
+    public List<List<Integer>> exampleThreeSum(int[] arr){
+        Arrays.sort(arr);
+        List<List<Integer>> li=new ArrayList<>();
+        for(int i=0;i<arr.length-1;i++){
+            if(arr[i]==arr[i+1]){
+                continue;
+            }
+            int j=i+1;
+            int k=arr.length-1;
+            while(j<k){
+                int sum=arr[i]+arr[j]+arr[k];
+                if(sum==0){
+                    li.add(Arrays.asList(arr[i],arr[j],arr[k]));
+                    while(j<k && arr[j]==arr[j+1]) j++;
+                    while(j<k && arr[k]==arr[k-1]) k--;
+
+                    j++;
+                    k--;
+                }
+
+                else if(sum < 0){
+                    j++;
+                }
+                else{
+                    k--;
+                }
+            }
+        }
+        return li;
+    }
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter the size of the array: ");
+        int size=sc.nextInt();
+
+        int[] arr=new int[size];
+        System.out.println("Enter the elements of the array: ");
+        for(int i=0;i<arr.length;i++){
+            arr[i]=sc.nextInt();
+        }
+        List<List<Integer>> result=new ArrayList<>();
+        ThreeSumUsingTwoPointer obj=new ThreeSumUsingTwoPointer();
+        result=obj.exampleThreeSum(arr);
+        System.out.println(result);
+    }
+}
+
+
