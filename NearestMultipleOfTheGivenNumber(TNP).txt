@@ -1,0 +1,71 @@
+===================================
+
+INPUT--
+x=13
+y=3
+
+OUTPUT--
+12
+
+3*4=12 is nearer to the value of x.
+====================================
+
+
+import java.util.*;
+public class TestExample {
+    public static void main(String[] args) {
+
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter the first number: ");
+        int first=sc.nextInt();
+
+        System.out.println("Enter the second number: ");
+        int second=sc.nextInt();
+        int near=Integer.MAX_VALUE;
+
+        for(int i=0;i<first;i++){
+            int mul=second*i;
+            if(Math.abs(first-mul)<Math.abs(near-first)){
+                near=mul;
+            }
+
+        }
+
+        System.out.println(near);
+
+    }
+}
+
+
+
+//IN ANOTHER METHOD
+=======================
+
+
+import java.util.*;
+public class TestExample {
+    public static void main(String[] args) {
+
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter the first number: ");
+        int first=sc.nextInt();
+
+        System.out.println("Enter the second number: ");
+        int second=sc.nextInt();
+        int near=Integer.MAX_VALUE;
+
+        int result=0;
+        for(int i=0;i<first;i++){
+           int rem=first%second;
+            if(rem<near){
+                near=rem;
+                result=(first/second)*second;
+            }
+    
+
+        }
+
+        System.out.println(result);
+
+    }
+}

@@ -1,0 +1,37 @@
+// User function Template for Java
+
+class Solution {
+    void rearrange(ArrayList<Integer> arr) {
+        // code here
+        List<Integer> pos=new ArrayList<>();
+        List<Integer> neg=new ArrayList<>();
+        int[] temp=new int[arr.size()];
+        for(int i=0;i<arr.size();i++){
+            if(arr.get(i)>=0){
+                pos.add(arr.get(i));
+            }
+            else{
+                neg.add(arr.get(i));
+            }
+        }
+        arr.clear();
+        int p=0;
+        int n=0;
+        while(p<pos.size() && n<neg.size()){
+            arr.add(pos.get(p));
+            p++;
+            arr.add(neg.get(n));
+            n++;
+        }
+        
+        while(p<pos.size()){
+            arr.add(pos.get(p));
+            p++;
+        }
+        while(n<neg.size()){
+            arr.add(neg.get(n));
+            n++;
+        }
+        
+    }
+}
