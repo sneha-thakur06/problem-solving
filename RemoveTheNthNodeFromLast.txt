@@ -10,6 +10,7 @@ class NodeSwap{
         this.next=null;
     }
 }
+
 public class SwapNodeData {
     public static NodeSwap arrayToList(int[] arr){
         NodeSwap head= new NodeSwap(arr[0]);
